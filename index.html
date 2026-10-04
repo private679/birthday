@@ -1,50 +1,605 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday, Baby ❤️</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div id="hearts"></div>
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Happy Birthday, Baby ❤️</title>  <style>  
+*{  
+    margin:0;  
+    padding:0;  
+    box-sizing:border-box;  
+}  
+  
+html{  
+    scroll-behavior:smooth;  
+}  
+  
+body{  
+    min-height:100vh;  
+    color:white;  
+    font-family:Georgia,serif;  
+    overflow-x:hidden;  
+  
+    background:  
+    radial-gradient(circle at 20% 10%,#ff9fc7 0%,transparent 25%),  
+    radial-gradient(circle at 90% 20%,#ff5c9d 0%,transparent 25%),  
+    radial-gradient(circle at 50% 80%,#b92f69 0%,transparent 35%),  
+    linear-gradient(145deg,#160813,#3b1027,#170812);  
+}  
+  
+/* GLOWING BACKGROUND */  
+body::before{  
+    content:"";  
+    position:fixed;  
+    inset:0;  
+    pointer-events:none;  
+    background:  
+    radial-gradient(circle at 50% 50%,transparent 40%,#0008 100%);  
+    z-index:-1;  
+}  
+  
+.container{  
+    width:100%;  
+    max-width:760px;  
+    margin:auto;  
+    padding:20px;  
+}  
+  
+/* OPENING */  
+.welcome{  
+    min-height:100vh;  
+    display:flex;  
+    flex-direction:column;  
+    justify-content:center;  
+    align-items:center;  
+    text-align:center;  
+    position:relative;  
+}  
+  
+.welcome::before,  
+.welcome::after{  
+    content:"♡";  
+    position:absolute;  
+    color:#ff9fc7;  
+    font-size:100px;  
+    opacity:.12;  
+}  
+  
+.welcome::before{  
+    top:12%;  
+    left:3%;  
+    transform:rotate(-20deg);  
+}  
+  
+.welcome::after{  
+    bottom:12%;  
+    right:3%;  
+    transform:rotate(20deg);  
+}  
+  
+.star{  
+    font-size:55px;  
+    color:#ffd1e3;  
+    text-shadow:  
+    0 0 10px #ff9fc7,  
+    0 0 30px #ff4f94,  
+    0 0 60px #ff4f94;  
+    animation:pulse 2s infinite;  
+}  
+  
+.welcome small{  
+    letter-spacing:4px;  
+    color:#ffc5dc;  
+    opacity:.85;  
+    margin:18px 0;  
+    font-family:Arial,sans-serif;  
+    font-size:11px;  
+}  
+  
+h1{  
+    font-size:58px;  
+    line-height:1.05;  
+    margin:10px 0 20px;  
+    text-shadow:0 8px 30px #0008;  
+}  
+  
+h1 span{  
+    color:#ff9fc7;  
+    text-shadow:  
+    0 0 15px #ff4f94,  
+    0 0 35px #ff4f94;  
+}  
+  
+.subtitle{  
+    color:#ffd6e6;  
+    font-size:20px;  
+    font-style:italic;  
+    margin-bottom:38px;  
+}  
+  
+/* BUTTON */  
+button{  
+    border:1px solid #ffffff55;  
+    padding:17px 30px;  
+    border-radius:50px;  
+    background:  
+    linear-gradient(135deg,#ff4f94,#ff9fc7,#ffd1e3);  
+    color:#401027;  
+    font-weight:bold;  
+    font-size:15px;  
+    cursor:pointer;  
+  
+    box-shadow:  
+    0 10px 30px #0008,  
+    0 0 25px #ff4f9470;  
+  
+    transition:.3s;  
+}  
+  
+button:hover{  
+    transform:translateY(-4px) scale(1.03);  
+    box-shadow:  
+    0 15px 40px #0009,  
+    0 0 40px #ff4f94;  
+}  
+  
+/* SURPRISE */  
+.surprise{  
+    display:none;  
+    padding-top:30px;  
+    padding-bottom:80px;  
+    animation:appear 1s ease;  
+}  
+  
+/* TOP DECORATION */  
+.top-love{  
+    text-align:center;  
+    margin-bottom:22px;  
+    color:#ffb5d1;  
+    font-size:14px;  
+    letter-spacing:3px;  
+}  
+  
+.top-love span{  
+    margin:0 8px;  
+    color:#ff6fa8;  
+}  
+  
+/* PHOTO */  
+.photo{  
+    width:100%;  
+    padding:8px;  
+    border-radius:30px;  
+  
+    background:  
+    linear-gradient(135deg,  
+    #ffd1e3,  
+    #ff4f94,  
+    #fff0f7,  
+    #ff80b5);  
+  
+    box-shadow:  
+    0 25px 70px #0009,  
+    0 0 35px #ff4f9455;  
+  
+    position:relative;  
+}  
+  
+.photo::before{  
+    content:"♥";  
+    position:absolute;  
+    top:-18px;  
+    right:20px;  
+    width:45px;  
+    height:45px;  
+    display:flex;  
+    align-items:center;  
+    justify-content:center;  
+  
+    background:#ff4f94;  
+    border:3px solid #ffd8e7;  
+    border-radius:50%;  
+  
+    box-shadow:0 0 25px #ff4f94;  
+    z-index:2;  
+}  
+  
+.photo img{  
+    display:block;  
+    width:100%;  
+    max-height:650px;  
+    object-fit:cover;  
+    border-radius:23px;  
+}  
+  
+/* CARD */  
+.card{  
+    margin-top:28px;  
+    padding:32px 22px;  
+    border-radius:30px;  
+  
+    background:  
+    linear-gradient(  
+        145deg,  
+        #ffb6d022,  
+        #ffffff0d  
+    );  
+  
+    border:1px solid #ffb5d144;  
+  
+    box-shadow:  
+    0 20px 60px #0008,  
+    inset 0 1px 0 #ffffff22;  
+  
+    backdrop-filter:blur(18px);  
+    -webkit-backdrop-filter:blur(18px);  
+}  
+  
+.cake{  
+    text-align:center;  
+    font-size:48px;  
+    filter:drop-shadow(0 0 15px #ff6fa8);  
+    animation:floatCake 3s ease-in-out infinite;  
+}  
+  
+h2{  
+    text-align:center;  
+    color:#ffd0e1;  
+    font-size:31px;  
+    margin:12px 0 28px;  
+  
+    text-shadow:  
+    0 0 15px #ff4f94,  
+    0 0 30px #ff4f9466;  
+}  
+  
+.message{  
+    font-family:Arial,sans-serif;  
+    font-size:16px;  
+    line-height:1.9;  
+    color:#ffe9f1;  
+}  
+  
+.message p{  
+    margin-bottom:24px;  
+}  
+  
+/* HIGHLIGHT PARAGRAPH */  
+.message p:first-child{  
+    padding:20px;  
+    border-radius:20px;  
+    background:#ff7eae12;  
+    border:1px solid #ffb5d122;  
+}  
+  
+.summer{  
+    color:#ffd0e1;  
+    font-family:Georgia,serif;  
+    font-size:21px;  
+    font-style:italic;  
+    text-align:center;  
+  
+    padding:25px 15px;  
+    margin:30px 0;  
+  
+    border-top:1px solid #ff9fc755;  
+    border-bottom:1px solid #ff9fc755;  
+  
+    text-shadow:0 0 15px #ff4f94;  
+}  
+  
+.end{  
+    text-align:center;  
+    color:#ffabc9;  
+    font-size:20px;  
+    margin-top:35px;  
+    padding-top:25px;  
+    border-top:1px solid #ffffff1c;  
+}  
+  
+/* LITTLE LOVE SIGNATURE */  
+.signature{  
+    text-align:center;  
+    margin-top:22px;  
+    color:#ffc4d9;  
+    font-size:13px;  
+    letter-spacing:2px;  
+    opacity:.8;  
+}  
+  
+/* FLOATING HEARTS */  
+.heart{  
+    position:fixed;  
+    bottom:-40px;  
+    pointer-events:none;  
+    animation:float 5s linear forwards;  
+    z-index:20;  
+    filter:drop-shadow(0 0 8px #ff5c9d);  
+}  
+  
+@keyframes float{  
+    from{  
+        transform:translateY(0) rotate(0);  
+        opacity:1;  
+    }  
+  
+    50%{  
+        opacity:.9;  
+    }  
+  
+    to{  
+        transform:translateY(-110vh) rotate(35deg);  
+        opacity:0;  
+    }  
+}  
+  
+@keyframes pulse{  
+    50%{  
+        transform:scale(1.2);  
+    }  
+}  
+  
+@keyframes appear{  
+    from{  
+        opacity:0;  
+        transform:translateY(35px);  
+    }  
+  
+    to{  
+        opacity:1;  
+        transform:translateY(0);  
+    }  
+}  
+  
+@keyframes floatCake{  
+    0%,100%{  
+        transform:translateY(0);  
+    }  
+  
+    50%{  
+        transform:translateY(-8px);  
+    }  
+}  
+  
+/* SPARKLES */  
+.sparkle{  
+    position:fixed;  
+    pointer-events:none;  
+    color:#ffd5e5;  
+    animation:sparkleMove 3s linear forwards;  
+    z-index:10;  
+}  
+  
+@keyframes sparkleMove{  
+    0%{  
+        opacity:0;  
+        transform:scale(.5);  
+    }  
+  
+    30%{  
+        opacity:1;  
+    }  
+  
+    100%{  
+        opacity:0;  
+        transform:scale(1.5) translateY(-100px);  
+    }  
+}  
+  
+/* MOBILE */  
+@media(max-width:500px){  
+  
+    .container{  
+        padding:15px;  
+    }  
+  
+    h1{  
+        font-size:48px;  
+    }  
+  
+    .subtitle{  
+        font-size:18px;  
+    }  
+  
+    .message{  
+        font-size:15px;  
+        line-height:1.85;  
+    }  
+  
+    .card{  
+        padding:28px 18px;  
+    }  
+  
+    h2{  
+        font-size:27px;  
+    }  
+}  
+</style>  </head>  <body>  <div class="container">  <!-- OPENING SCREEN -->  <section class="welcome" id="welcome">  <div class="star">✦</div>  
 
-  <main class="container">
-    <section class="hero" id="hero">
-      <div class="sparkle">✦</div>
-      <p class="small">A little surprise for you...</p>
-      <h1>Happy Birthday,<br><span>Baby ❤️</span></h1>
-      <p class="subtitle">You are truly my summer ☀️</p>
-      <button id="openBtn">Open Your Surprise 💌</button>
-    </section>
+<small>A LITTLE PINK SURPRISE FOR YOU...</small>  
 
-    <section class="surprise hidden" id="surprise">
-      <div class="photo-wrap">
-        <img src="girl.jpg" alt="Birthday girl">
-      </div>
+<h1>  
+    Happy Birthday,<br>  
+    <span>Baby ❤️</span>  
+</h1>  
 
-      <div class="card">
-        <div class="cake">🎂</div>
-        <h2>Happy Birthday, Baby ❤️</h2>
-        <div class="message">
-          <p>Happy birthday to you, baby. ❤️ I wish you all the beautiful things life has to offer. I pray that you get everything your heart desires and that this new chapter brings you nothing but happiness, peace, and countless blessings.</p>
+<div class="subtitle">  
+    You are truly my summer ☀️  
+</div>  
 
-          <p>Meeting you is something I honestly can’t explain. You came into my life when I was at my lowest, reached out your hand to me, and somehow helped me see the light again. I truly appreciate you more than words can say.</p>
+<button onclick="openSurprise()">  
+    Open Your Surprise 💌  
+</button>
 
-          <p>Your smile is so comforting, your hugs feel like home, and there’s just something about you that makes everything feel a little better. I love you so much, baby, and I’m genuinely grateful that I met you.</p>
+</section>  <!-- BIRTHDAY CONTENT -->  <section class="surprise" id="surprise">  <div class="top-love">  
+    <span>♡</span>  
+    MADE WITH LOVE  
+    <span>♡</span>  
+</div>  
 
-          <p class="summer">You are truly my summer — my warmth, my happiness, and my light. ☀️❤️</p>
+<div class="photo">  
+    <img src="girl.jpg" alt="Birthday Girl">  
+</div>  
 
-          <p>I’m so glad you’re in my life.</p>
+<div class="card">  
 
-          <p>Enjoy your special day, baby. You deserve every beautiful thing coming your way. Happy birthday once again. I love you so much. ❤️🎂🥂</p>
-        </div>
+    <div class="cake">🎂</div>  
 
-        <div class="final">Forever grateful for you ❤️</div>
-      </div>
-    </section>
-  </main>
+    <h2>Happy Birthday, Baby ❤️</h2>  
 
-  <script src="script.js"></script>
-</body>
+    <div class="message">  
+
+        <p>  
+        Happy birthday to you, baby. ❤️ I wish you all the beautiful  
+        things life has to offer. I pray that you get everything your  
+        heart desires and that this new chapter brings you nothing but  
+        happiness, peace, and countless blessings.  
+        </p>  
+
+        <p>  
+        Meeting you is something I honestly can’t explain. You came into  
+        my life when I was at my lowest, reached out your hand to me,  
+        and somehow helped me see the light again. I truly appreciate  
+        you more than words can say.  
+        </p>  
+
+        <p>  
+        Your smile is so comforting, your hugs feel like home, and there’s  
+        just something about you that makes everything feel a little better.  
+        I love you so much, baby, and I’m genuinely grateful that I met you.  
+        </p>  
+
+        <p class="summer">  
+        You are truly my summer — my warmth, my happiness, and my light. ☀️❤️  
+        </p>  
+
+        <p>  
+        I’m so glad you’re in my life.  
+        </p>  
+
+        <p>  
+        Enjoy your special day, baby. You deserve every beautiful thing  
+        coming your way. Happy birthday once again. I love you so much.  
+        ❤️🎂🥂  
+        </p>  
+
+    </div>  
+
+    <div class="end">  
+        Forever grateful for you ❤️  
+    </div>  
+
+    <div class="signature">  
+        WITH ALL MY LOVE ♡  
+    </div>  
+
+</div>
+
+</section>  </div>  <script>  
+  
+function openSurprise(){  
+  
+    document.getElementById("welcome").style.display="none";  
+  
+    document.getElementById("surprise").style.display="block";  
+  
+    window.scrollTo({  
+        top:0,  
+        behavior:"smooth"  
+    });  
+  
+    // Heart explosion  
+    for(let i=0;i<45;i++){  
+        setTimeout(createHeart,i*80);  
+    }  
+  
+    // Sparkle explosion  
+    for(let i=0;i<25;i++){  
+        setTimeout(createSparkle,i*100);  
+    }  
+}  
+  
+  
+/* HEARTS */  
+function createHeart(){  
+  
+    const heart=document.createElement("div");  
+  
+    heart.className="heart";  
+  
+    const emojis=[  
+        "❤️",  
+        "💗",  
+        "💕",  
+        "💖",  
+        "💓",  
+        "💞",  
+        "🌸",  
+        "✨"  
+    ];  
+  
+    heart.innerHTML=  
+        emojis[Math.floor(Math.random()*emojis.length)];  
+  
+    heart.style.left=  
+        Math.random()*100+"vw";  
+  
+    heart.style.fontSize=  
+        (15+Math.random()*25)+"px";  
+  
+    heart.style.animationDuration=  
+        (4+Math.random()*4)+"s";  
+  
+    document.body.appendChild(heart);  
+  
+    setTimeout(()=>{  
+        heart.remove();  
+    },8000);  
+}  
+  
+  
+/* SPARKLES */  
+function createSparkle(){  
+  
+    const sparkle=document.createElement("div");  
+  
+    sparkle.className="sparkle";  
+  
+    sparkle.innerHTML="✦";  
+  
+    sparkle.style.left=  
+        Math.random()*100+"vw";  
+  
+    sparkle.style.top=  
+        (30+Math.random()*60)+"vh";  
+  
+    sparkle.style.fontSize=  
+        (10+Math.random()*18)+"px";  
+  
+    document.body.appendChild(sparkle);  
+  
+    setTimeout(()=>{  
+        sparkle.remove();  
+    },3000);  
+}  
+  
+  
+/* KEEP HEARTS FLOATING */  
+setInterval(()=>{  
+  
+    if(document.getElementById("surprise").style.display==="block"){  
+        createHeart();  
+    }  
+  
+},900);  
+  
+  
+/* KEEP SPARKLES FLOATING */  
+setInterval(()=>{  
+  
+    if(document.getElementById("surprise").style.display==="block"){  
+        createSparkle();  
+    }  
+  
+},1500);  
+  
+</script>  </body>  
 </html>
